@@ -34,7 +34,8 @@ class MasterTableViewController: UITableViewController , Notifier, MFMailCompose
         title = self.collectionType.rawValue
 //        FUIToastMessage.show(message: "Loading Data...", icon: UIImage(named: "default_person.png")!, inView: self.view, withDuration: 1.0, maxNumberOfLines: 1)
 //        self.addtableHeaderView()
-        
+        tableView.estimatedRowHeight = 80
+        tableView.rowHeight = UITableViewAutomaticDimension
         self.activityIndicator = self.initWithActivityIndicator()
         self.activityIndicator.center = self.tableView.center
         self.tableView.addSubview(self.activityIndicator)
@@ -101,7 +102,7 @@ class MasterTableViewController: UITableViewController , Notifier, MFMailCompose
     
     func getCustomerData(){
         CustomerDA().requestEntities { (entities,error) in
-            guard let error = error else {
+            guard error != nil else {
                 DispatchQueue.main.async {
                     
                     self.entities=entities!;
@@ -172,8 +173,7 @@ class MasterTableViewController: UITableViewController , Notifier, MFMailCompose
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        tableView.estimatedRowHeight = 80
-        tableView.rowHeight = UITableViewAutomaticDimension
+        
         
         switch collectionType {
             case .salesOrderHeaders:

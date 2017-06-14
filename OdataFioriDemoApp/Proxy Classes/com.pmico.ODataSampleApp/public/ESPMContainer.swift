@@ -17,7 +17,7 @@ open class ESPMContainer<Provider: DataServiceProvider>: DataService<Provider> {
     open func customers(query: DataQuery = DataQuery(), completionHandler: @escaping(Array<Customer>?, Error?) -> Void) -> Void {
         self.addBackgroundOperation {
             do {
-                var result: Array<Customer> = try self.customers(query: query)
+                let result: Array<Customer> = try self.customers(query: query)
                 OperationQueue.main.addOperation {
                     completionHandler(result, nil)
                 }
@@ -77,7 +77,7 @@ open class ESPMContainer<Provider: DataServiceProvider>: DataService<Provider> {
     open func productCategories(query: DataQuery = DataQuery(), completionHandler: @escaping(Array<ProductCategory>?, Error?) -> Void) -> Void {
         self.addBackgroundOperation {
             do {
-                var result: Array<ProductCategory> = try self.productCategories(query: query)
+                let result: Array<ProductCategory> = try self.productCategories(query: query)
                 OperationQueue.main.addOperation {
                     completionHandler(result, nil)
                 }
@@ -97,7 +97,7 @@ open class ESPMContainer<Provider: DataServiceProvider>: DataService<Provider> {
     open func productTexts(query: DataQuery = DataQuery(), completionHandler: @escaping(Array<ProductText>?, Error?) -> Void) -> Void {
         self.addBackgroundOperation {
             do {
-                var result: Array<ProductText> = try self.productTexts(query: query)
+                let result: Array<ProductText> = try self.productTexts(query: query)
                 OperationQueue.main.addOperation {
                     completionHandler(result, nil)
                 }
@@ -117,7 +117,7 @@ open class ESPMContainer<Provider: DataServiceProvider>: DataService<Provider> {
     open func products(query: DataQuery = DataQuery(), completionHandler: @escaping(Array<Product>?, Error?) -> Void) -> Void {
         self.addBackgroundOperation {
             do {
-                var result: Array<Product> = try self.products(query: query)
+                let result: Array<Product> = try self.products(query: query)
                 OperationQueue.main.addOperation {
                     completionHandler(result, nil)
                 }
@@ -137,7 +137,7 @@ open class ESPMContainer<Provider: DataServiceProvider>: DataService<Provider> {
     open func purchaseOrderHeaders(query: DataQuery = DataQuery(), completionHandler: @escaping(Array<PurchaseOrderHeader>?, Error?) -> Void) -> Void {
         self.addBackgroundOperation {
             do {
-                var result: Array<PurchaseOrderHeader> = try self.purchaseOrderHeaders(query: query)
+                let result: Array<PurchaseOrderHeader> = try self.purchaseOrderHeaders(query: query)
                 OperationQueue.main.addOperation {
                     completionHandler(result, nil)
                 }
@@ -157,7 +157,7 @@ open class ESPMContainer<Provider: DataServiceProvider>: DataService<Provider> {
     open func purchaseOrderItems(query: DataQuery = DataQuery(), completionHandler: @escaping(Array<PurchaseOrderItem>?, Error?) -> Void) -> Void {
         self.addBackgroundOperation {
             do {
-                var result: Array<PurchaseOrderItem> = try self.purchaseOrderItems(query: query)
+                let result: Array<PurchaseOrderItem> = try self.purchaseOrderItems(query: query)
                 OperationQueue.main.addOperation {
                     completionHandler(result, nil)
                 }
@@ -197,7 +197,7 @@ open class ESPMContainer<Provider: DataServiceProvider>: DataService<Provider> {
     open func salesOrderHeaders(query: DataQuery = DataQuery(), completionHandler: @escaping(Array<SalesOrderHeader>?, Error?) -> Void) -> Void {
         self.addBackgroundOperation {
             do {
-                var result: Array<SalesOrderHeader> = try self.salesOrderHeaders(query: query)
+                let result: Array<SalesOrderHeader> = try self.salesOrderHeaders(query: query)
                 OperationQueue.main.addOperation {
                     completionHandler(result, nil)
                 }
@@ -217,7 +217,7 @@ open class ESPMContainer<Provider: DataServiceProvider>: DataService<Provider> {
     open func salesOrderItems(query: DataQuery = DataQuery(), completionHandler: @escaping(Array<SalesOrderItem>?, Error?) -> Void) -> Void {
         self.addBackgroundOperation {
             do {
-                var result: Array<SalesOrderItem> = try self.salesOrderItems(query: query)
+                let result: Array<SalesOrderItem> = try self.salesOrderItems(query: query)
                 OperationQueue.main.addOperation {
                     completionHandler(result, nil)
                 }
@@ -237,7 +237,7 @@ open class ESPMContainer<Provider: DataServiceProvider>: DataService<Provider> {
     open func stock(query: DataQuery = DataQuery(), completionHandler: @escaping(Array<Stock>?, Error?) -> Void) -> Void {
         self.addBackgroundOperation {
             do {
-                var result: Array<Stock> = try self.stock(query: query)
+                let result: Array<Stock> = try self.stock(query: query)
                 OperationQueue.main.addOperation {
                     completionHandler(result, nil)
                 }
@@ -257,7 +257,7 @@ open class ESPMContainer<Provider: DataServiceProvider>: DataService<Provider> {
     open func suppliers(query: DataQuery = DataQuery(), completionHandler: @escaping(Array<Supplier>?, Error?) -> Void) -> Void {
         self.addBackgroundOperation {
             do {
-                var result: Array<Supplier> = try self.suppliers(query: query)
+                let result: Array<Supplier> = try self.suppliers(query: query)
                 OperationQueue.main.addOperation {
                     completionHandler(result, nil)
                 }
