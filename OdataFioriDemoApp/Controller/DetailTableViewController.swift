@@ -22,8 +22,6 @@ class DetailTableViewController: UITableViewController , Notifier {
     override func viewDidLoad() {
         super.viewDidLoad()
         dataAccess = appDelegate.espmContainer
-//        self.tableView.dataSource = tableDelegate
-//        self.tableView.delegate = tableDelegate
         title = collectionType.rawValue
         tableView.register(FUISimplePropertyFormCell.self, forCellReuseIdentifier: "FUICell")
         self.generateDetailViewClassObject()
@@ -52,12 +50,10 @@ class DetailTableViewController: UITableViewController , Notifier {
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
         return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
         return (cellView as! CustomerDetailView).getEntityCount()
     }
     

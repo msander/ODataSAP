@@ -188,6 +188,164 @@
             </objects>
             <point key="canvasLocation" x="881" y="1411"/>
         </scene>
+        <!--Basic Auth View Controller-->
+        <scene sceneID="3Ft-JJ-pwI">
+            <objects>
+                <viewController storyboardIdentifier="BasicAuth" useStoryboardIdentifierAsRestorationIdentifier="YES" id="RSY-oc-5Qv" customClass="BasicAuthViewController" customModule="OdataFioriDemoApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="gPJ-pQ-nsc"/>
+                        <viewControllerLayoutGuide type="bottom" id="LZP-5V-qKV"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="y5w-BM-nCq">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" contentMode="scaleToFill" indicatorStyle="white" translatesAutoresizingMaskIntoConstraints="NO" id="1E9-hY-hmI">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <subviews>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="epD-iL-fct">
+                                        <rect key="frame" x="157.5" y="356.5" width="180" height="30"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="180" id="SkU-jD-mML"/>
+                                            <constraint firstAttribute="height" constant="30" id="o9Z-lJ-4xi"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                                    </textField>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please type in your username and password for authentication" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vb2-fx-J0Q">
+                                        <rect key="frame" x="37.5" y="250.5" width="300" height="60"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="300" id="BBU-BF-KWh"/>
+                                            <constraint firstAttribute="height" constant="60" id="KRK-mc-xCx"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                        <color key="textColor" red="0.45369712750000002" green="0.45369712750000002" blue="0.45369712750000002" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                        <attributedString key="userComments">
+                                            <fragment content="XFLD: Label to describe for the user what to enter on the log on screen.">
+                                                <attributes>
+                                                    <font key="NSFont" size="11" name="HelveticaNeue"/>
+                                                    <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO"/>
+                                                </attributes>
+                                            </fragment>
+                                        </attributedString>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Username:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vJJ-vE-d2D">
+                                        <rect key="frame" x="37.5" y="323.5" width="112" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                        <attributedString key="userComments">
+                                            <fragment content="XFLD: Label for username field.">
+                                                <attributes>
+                                                    <font key="NSFont" size="11" name="HelveticaNeue"/>
+                                                    <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO"/>
+                                                </attributes>
+                                            </fragment>
+                                        </attributedString>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Password:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jJN-CP-fWY">
+                                        <rect key="frame" x="37.5" y="361.5" width="112" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                        <attributedString key="userComments">
+                                            <fragment content="XFLD: Label for password field.">
+                                                <attributes>
+                                                    <font key="NSFont" metaFont="smallSystem"/>
+                                                    <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                </attributes>
+                                            </fragment>
+                                        </attributedString>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KyS-U5-3l6">
+                                        <rect key="frame" x="166.5" y="406.5" width="42" height="30"/>
+                                        <state key="normal" title="Log in"/>
+                                        <attributedString key="userComments">
+                                            <fragment content="XFLD: Label to Log in.">
+                                                <attributes>
+                                                    <font key="NSFont" size="11" name="HelveticaNeue"/>
+                                                    <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO"/>
+                                                </attributes>
+                                            </fragment>
+                                        </attributedString>
+                                        <connections>
+                                            <action selector="loginButtonTapped:" destination="RSY-oc-5Qv" eventType="touchDown" id="MXf-Qw-SEt"/>
+                                        </connections>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Logon" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bf6-ny-pxL">
+                                        <rect key="frame" x="163.5" y="205.5" width="48" height="25"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="25" id="ZMo-Kb-VHb"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                        <attributedString key="userComments">
+                                            <fragment content="XTIT: Title of log in screen.">
+                                                <attributes>
+                                                    <font key="NSFont" metaFont="smallSystem"/>
+                                                    <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                </attributes>
+                                            </fragment>
+                                        </attributedString>
+                                    </label>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="yif-zP-MFv">
+                                        <rect key="frame" x="157.5" y="318.5" width="180" height="30"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="30" id="gOO-VA-qgO"/>
+                                            <constraint firstAttribute="width" constant="180" id="hLY-Ba-20l"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="epD-iL-fct" firstAttribute="top" secondItem="yif-zP-MFv" secondAttribute="bottom" constant="8" symbolic="YES" id="0XH-fS-veZ"/>
+                                    <constraint firstItem="yif-zP-MFv" firstAttribute="trailing" secondItem="epD-iL-fct" secondAttribute="trailing" id="106-Fo-vgT"/>
+                                    <constraint firstAttribute="bottom" secondItem="KyS-U5-3l6" secondAttribute="bottom" constant="50" id="5B1-qv-o7t"/>
+                                    <constraint firstItem="KyS-U5-3l6" firstAttribute="top" secondItem="epD-iL-fct" secondAttribute="bottom" constant="20" id="7BI-e9-QNg"/>
+                                    <constraint firstItem="vJJ-vE-d2D" firstAttribute="leading" secondItem="vb2-fx-J0Q" secondAttribute="leading" id="7q3-pF-Qmz"/>
+                                    <constraint firstItem="yif-zP-MFv" firstAttribute="centerY" secondItem="1E9-hY-hmI" secondAttribute="centerY" id="AeY-LE-kPz"/>
+                                    <constraint firstItem="jJN-CP-fWY" firstAttribute="trailing" secondItem="vJJ-vE-d2D" secondAttribute="trailing" id="BV6-IF-KeP"/>
+                                    <constraint firstItem="bf6-ny-pxL" firstAttribute="top" relation="greaterThanOrEqual" secondItem="1E9-hY-hmI" secondAttribute="top" constant="20" id="DOL-xz-vuS"/>
+                                    <constraint firstItem="yif-zP-MFv" firstAttribute="leading" secondItem="epD-iL-fct" secondAttribute="leading" id="FqQ-xu-BGh"/>
+                                    <constraint firstItem="yif-zP-MFv" firstAttribute="trailing" secondItem="vb2-fx-J0Q" secondAttribute="trailing" id="K1q-cu-PeT"/>
+                                    <constraint firstItem="yif-zP-MFv" firstAttribute="top" secondItem="vb2-fx-J0Q" secondAttribute="bottom" constant="8" id="Kfj-fl-3ex"/>
+                                    <constraint firstItem="vb2-fx-J0Q" firstAttribute="centerX" secondItem="1E9-hY-hmI" secondAttribute="centerX" id="MTT-nB-1Yv"/>
+                                    <constraint firstItem="bf6-ny-pxL" firstAttribute="centerX" secondItem="1E9-hY-hmI" secondAttribute="centerX" id="OPK-8f-glL"/>
+                                    <constraint firstAttribute="trailing" secondItem="vb2-fx-J0Q" secondAttribute="trailing" priority="1" id="QEu-aI-zAM"/>
+                                    <constraint firstItem="vb2-fx-J0Q" firstAttribute="centerX" secondItem="KyS-U5-3l6" secondAttribute="centerX" id="Zoi-VZ-RYh"/>
+                                    <constraint firstItem="epD-iL-fct" firstAttribute="trailing" secondItem="vb2-fx-J0Q" secondAttribute="trailing" id="flI-he-yls"/>
+                                    <constraint firstItem="vJJ-vE-d2D" firstAttribute="centerY" secondItem="yif-zP-MFv" secondAttribute="centerY" constant="0.5" id="j7W-sc-rCj"/>
+                                    <constraint firstItem="vJJ-vE-d2D" firstAttribute="leading" secondItem="jJN-CP-fWY" secondAttribute="leading" id="mSa-K5-RNK"/>
+                                    <constraint firstItem="jJN-CP-fWY" firstAttribute="centerY" secondItem="epD-iL-fct" secondAttribute="centerY" constant="0.5" id="oVg-Yw-aSa"/>
+                                    <constraint firstItem="vb2-fx-J0Q" firstAttribute="top" secondItem="bf6-ny-pxL" secondAttribute="bottom" constant="20" id="pfB-lG-l4l"/>
+                                    <constraint firstItem="yif-zP-MFv" firstAttribute="leading" secondItem="vJJ-vE-d2D" secondAttribute="trailing" constant="8" id="rSO-lP-M7o"/>
+                                    <constraint firstItem="bf6-ny-pxL" firstAttribute="centerX" secondItem="vb2-fx-J0Q" secondAttribute="centerX" id="zg8-2X-8Oe"/>
+                                </constraints>
+                            </scrollView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="1E9-hY-hmI" firstAttribute="top" secondItem="y5w-BM-nCq" secondAttribute="top" id="1DK-UB-kaW"/>
+                            <constraint firstAttribute="bottom" secondItem="1E9-hY-hmI" secondAttribute="bottom" id="2wZ-Rn-t5b"/>
+                            <constraint firstAttribute="trailing" secondItem="1E9-hY-hmI" secondAttribute="trailing" id="5l3-8y-gFi"/>
+                            <constraint firstItem="1E9-hY-hmI" firstAttribute="leading" secondItem="y5w-BM-nCq" secondAttribute="leading" id="hRb-hu-2xj"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="T2z-gc-wD2"/>
+                    <connections>
+                        <outlet property="loginButton" destination="KyS-U5-3l6" id="6au-2a-Sw2"/>
+                        <outlet property="passwordTextField" destination="epD-iL-fct" id="Y3a-SM-PxD"/>
+                        <outlet property="scrollView" destination="1E9-hY-hmI" id="tEu-cN-zVX"/>
+                        <outlet property="usernameTextField" destination="yif-zP-MFv" id="Atq-fz-w2I"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="l0A-vT-2xY" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-2097" y="100"/>
+        </scene>
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="ppo-Y0-t5S"/>

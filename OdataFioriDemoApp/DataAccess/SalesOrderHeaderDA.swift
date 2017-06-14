@@ -11,7 +11,7 @@ import SAPFoundation
 import SAPOData
 import SAPCommon
 
-class SalesOrderHeaderDA: NSObject {
+class SalesOrderHeaderDA {
     
     private var dataAccess : ESPMContainerDataAccess!
     
@@ -19,8 +19,7 @@ class SalesOrderHeaderDA: NSObject {
     
     private let appDelegate = UIApplication.shared.delegate as! AppDelegate
     
-    override init() {
-        super.init()
+    init() {
         self.dataAccess = appDelegate.espmContainer
     }
     func requestEntities(completionHandler: @escaping([EntityValue]?,Error?) -> Void) {

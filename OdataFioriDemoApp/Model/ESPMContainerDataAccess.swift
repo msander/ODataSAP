@@ -41,6 +41,11 @@ class ESPMContainerDataAccess {
              query: "/\(CollectionType.salesOrderHeaders.rawValue)",
             automaticallyRetrievesStreams: false))
         
+        try! offlineODataProvider.add(definingQuery: OfflineODataDefiningQuery(
+            name: CollectionType.products.rawValue,
+            query: "/\(CollectionType.products.rawValue)",
+            automaticallyRetrievesStreams: false))
+        
         offlineService = ESPMContainer(provider: offlineODataProvider)
         self.openOfflineStore{_ in }
     }
@@ -120,6 +125,37 @@ class ESPMContainerDataAccess {
                     return
                 }
                 completionHandler(customers!, nil)
+            }
+        }
+    }
+    
+    /// loads all products and their items
+    ///
+    /// - Returns: list of products
+    /// - Throws: error
+    func loadProducts(completionHandler: @escaping (_ result: [Product]?, _ error: String?) -> Void) {
+        
+        let query = DataQuery().selectAll().top(20)
+        
+        if isOfflineStoreOpened {
+            /// the same query as it was set up for the online use can be fired against the initialised the offline Odata Service
+            offlineService.products(query: query) { products, error in
+                if let error = error {
+                    completionHandler(nil, "Loading Sales Orders failed \(error.localizedDescription)")
+                    return
+                }
+                if(products?.count == 0){
+                    self.downloadOfflineStore { _ in }
+                }
+                completionHandler(products!, nil)
+            }
+        } else {
+            service.products(query: query) { products, error in
+                if let error = error {
+                    completionHandler(nil, "Loading Sales Orders failed \(error.localizedDescription)")
+                    return
+                }
+                completionHandler(products!, nil)
             }
         }
     }

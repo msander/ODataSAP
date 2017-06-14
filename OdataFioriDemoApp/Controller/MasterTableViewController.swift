@@ -34,7 +34,7 @@ class MasterTableViewController: UITableViewController , Notifier, MFMailCompose
         title = self.collectionType.rawValue
 //        FUIToastMessage.show(message: "Loading Data...", icon: UIImage(named: "default_person.png")!, inView: self.view, withDuration: 1.0, maxNumberOfLines: 1)
 //        self.addtableHeaderView()
-        tableView.estimatedRowHeight = 80
+        tableView.estimatedRowHeight = 300
         tableView.rowHeight = UITableViewAutomaticDimension
         self.activityIndicator = self.initWithActivityIndicator()
         self.activityIndicator.center = self.tableView.center
@@ -46,39 +46,24 @@ class MasterTableViewController: UITableViewController , Notifier, MFMailCompose
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    // MARK: - Class Methods
-
-    func addtableHeaderView(){
-        searchController = FUISearchController(searchResultsController: nil)
-        searchController!.searchResultsUpdater = self
-        searchController!.dimsBackgroundDuringPresentation = false
-        searchController!.hidesNavigationBarDuringPresentation = false
-        searchController!.view.autoresizingMask = [.flexibleBottomMargin, .flexibleHeight, .flexibleLeftMargin, .flexibleRightMargin, .flexibleTopMargin, .flexibleWidth]
-        searchController!.searchBar.placeholderText = "Search " + self.collectionType.rawValue
-        self.tableView.tableHeaderView = searchController?.searchBar
-    }
-    func filterContentForSearchText(searchText: String, scope: String = "All") {
-//        filteredCollections = collections.filter{ collectiondata in collectiondata.lowercased().contains(searchText.lowercased())}
-//        print(filteredCollections)
-//        tableView.reloadData()
-    }
-
-    func getDetailCollectionData()  {
-        
-        switch collectionType {
-        case .salesOrderHeaders:
-            self.showActivityIndicator(self.activityIndicator)
-            self.tableView.register(FUIObjectTableViewCell.self, forCellReuseIdentifier: "FUICell")
-            self.getSalesOrderData()
-        case .customers:
-            self.showActivityIndicator(self.activityIndicator)
-            self.tableView.register(FUIContactCell.self, forCellReuseIdentifier: "FUICell")
-            self.getCustomerData()
-
-        default:
-            self.dismissIndicator(self.activityIndicator)
-            self.displayAlert(title: "Warning", message: "Something goes wrong!!", buttonText: "OK")
-        }
+    
+    
+    //MARK: - Entity fetches
+    
+    fileprivate func getProductsData(){
+        ProductDA().requestEntities(completionHandler: { (product, error) in
+            guard let products = product else {
+                print("error")
+                return
+            }
+            print(products)
+            print(products.count)
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+                self.hideActivityIndicator(self.activityIndicator)
+            }
+            self.entities = products
+        })
     }
     
     func getSalesOrderData(){
@@ -125,7 +110,48 @@ class MasterTableViewController: UITableViewController , Notifier, MFMailCompose
                 buttonText:"OK")
         }
     }
+
+    // MARK: - Class Methods
     
+    func getDetailCollectionData()  {
+        
+        switch collectionType {
+        case .salesOrderHeaders:
+            self.showActivityIndicator(self.activityIndicator)
+            self.tableView.register(FUIObjectTableViewCell.self, forCellReuseIdentifier: "FUICell")
+            self.getSalesOrderData()
+        case .customers:
+            self.showActivityIndicator(self.activityIndicator)
+            self.tableView.register(FUIContactCell.self, forCellReuseIdentifier: "FUICell")
+            self.getCustomerData()
+            
+        case .products:
+            self.showActivityIndicator(self.activityIndicator)
+            self.navigationItem.title = "Products"
+            tableView.register(FUIObjectTableViewCell.self, forCellReuseIdentifier: "FUIObjectCell")
+            getProductsData()
+            
+        default:
+            self.dismissIndicator(self.activityIndicator)
+            self.displayAlert(title: "Warning", message: "Something goes wrong!!", buttonText: "OK")
+        }
+    }
+
+    func addtableHeaderView(){
+        searchController = FUISearchController(searchResultsController: nil)
+        searchController!.searchResultsUpdater = self
+        searchController!.dimsBackgroundDuringPresentation = false
+        searchController!.hidesNavigationBarDuringPresentation = false
+        searchController!.view.autoresizingMask = [.flexibleBottomMargin, .flexibleHeight, .flexibleLeftMargin, .flexibleRightMargin, .flexibleTopMargin, .flexibleWidth]
+        searchController!.searchBar.placeholderText = "Search " + self.collectionType.rawValue
+        self.tableView.tableHeaderView = searchController?.searchBar
+    }
+    func filterContentForSearchText(searchText: String, scope: String = "All") {
+//        filteredCollections = collections.filter{ collectiondata in collectiondata.lowercased().contains(searchText.lowercased())}
+//        print(filteredCollections)
+//        tableView.reloadData()
+    }
+
     func sendEmail() {
         if MFMailComposeViewController.canSendMail() {
             let mail = MFMailComposeViewController()
@@ -192,7 +218,7 @@ class MasterTableViewController: UITableViewController , Notifier, MFMailCompose
                 let address = "\(customers?.street ?? "")" + ", " + "\(customers?.city ?? "")" + " - " + "\(customers?.postalCode ?? "")"
                 
                 let activities = [FUIActivityItem.phone, FUIActivityItem.email]
-                cell.detailImage = UIImage(named: "default_person.png")
+                cell.detailImage = UIImage(named: "icon.jpg")
                 cell.headlineText = customerName
                 cell.subheadlineText = address
                 cell.descriptionText = "\(customers?.country ?? "")"
@@ -211,6 +237,15 @@ class MasterTableViewController: UITableViewController , Notifier, MFMailCompose
                 }
                 
                 
+                return cell
+            
+            case .products:
+                
+                let cell = (tableView.dequeueReusableCell(withIdentifier: "FUIObjectCell", for: indexPath) as? FUIObjectTableViewCell)!
+                let product = entities?[indexPath.row] as? Product
+                cell.headlineText = "\(product?.category! ?? "")"
+                cell.subheadlineText = product?.categoryName ?? ""
+                cell.descriptionText = product?.longDescription ?? ""
                 return cell
             
             default:
@@ -246,20 +281,6 @@ class MasterTableViewController: UITableViewController , Notifier, MFMailCompose
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         performSegue(withIdentifier: "ShowDetail", sender: tableView)
     }
-    
-//    func getCustomerID() -> Int{
-////        var maxCustID = 0
-////        maxCustID = self.entities.map { $0.dataValue(for: "CustomerId") }.max()
-//        for item in self.entities! {
-//            let property = ESPMContainerMetadata.EntityTypes.customer.keyProperties[0].name
-//            print (property)
-//            let CurrentEntity = item as? Customer
-//            print(CurrentEntity?.customerID)
-////            print(Int((CurrentEntity?.customerID)!).max())
-//        }
-//        return 2;
-//    }
-    
 
 }
 

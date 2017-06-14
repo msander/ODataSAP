@@ -27,15 +27,27 @@ class AppDelegate: UIResponder, UIApplicationDelegate,UISplitViewControllerDeleg
         // Override point for customization after application launch.
         UINavigationBar.applyFioriStyle()
         
+        
+        // Show the actual authentication' view controller
+        self.window?.makeKeyAndVisible()
+        let storyboard: UIStoryboard? = UIStoryboard(name: "Main", bundle: nil)
+        if (storyboard != nil) {
+            let splitViewController = self.window!.rootViewController as! UISplitViewController
+            let logonViewController = (storyboard?.instantiateViewController(withIdentifier: "BasicAuth"))! as! BasicAuthViewController
+            splitViewController.modalPresentationStyle = UIModalPresentationStyle.currentContext
+            splitViewController.preferredDisplayMode = .allVisible
+            splitViewController.present(logonViewController, animated: false, completion: {})
+        }
+        
         // Override point for customization after application launch.
         let splitViewController = self.window!.rootViewController as! UISplitViewController
         let navigationController = splitViewController.viewControllers[splitViewController.viewControllers.count - 1] as! UINavigationController
         navigationController.topViewController!.navigationItem.leftBarButtonItem = splitViewController.displayModeButtonItem
         splitViewController.delegate = self
         
-        let urlSession = SAPURLSession(configuration: URLSessionConfiguration.default)
-        urlSession.register(SAPcpmsObserver(applicationID: Constants.appId, deviceID: UIDevice.current.identifierForVendor!.uuidString))
-        self.urlSession = urlSession
+//        let urlSession = SAPURLSession(configuration: URLSessionConfiguration.default)
+//        urlSession.register(SAPcpmsObserver(applicationID: Constants.appId, deviceID: UIDevice.current.identifierForVendor!.uuidString))
+//        self.urlSession = urlSession
         
         return true
     }

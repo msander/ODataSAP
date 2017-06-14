@@ -1,8 +1,8 @@
 //
-//  CustomerDA.swift
+//  ProductDA.swift
 //  OdataFioriDemoApp
 //
-//  Created by Riya Ganguly on 12/06/17.
+//  Created by Sayantan Chakraborty on 14/06/17.
 //  Copyright © 2017 SAP. All rights reserved.
 //
 
@@ -11,25 +11,24 @@ import SAPFoundation
 import SAPOData
 import SAPCommon
 
-class CustomerDA {
+class ProductDA {
     
     private var dataAccess : ESPMContainerDataAccess!
     
-    private var entities: [Customer] = [Customer]()
+    private var entities: [Product] = [Product]()
     
     private let appDelegate = UIApplication.shared.delegate as! AppDelegate
     
     init() {
         self.dataAccess = appDelegate.espmContainer
     }
-    
     func requestEntities(completionHandler: @escaping([EntityValue]?,Error?) -> Void) {
-        self.dataAccess.loadCustomers { (customers, error) in
-            guard let customers = customers else {
-                completionHandler(nil,error!)
+        self.dataAccess.loadProducts { (products, error) in
+            guard let product = products else {
+                completionHandler(nil,error! as? Error)
                 return
             }
-            self.entities = customers
+            self.entities = product
             completionHandler(self.entities,nil)
         }
     }

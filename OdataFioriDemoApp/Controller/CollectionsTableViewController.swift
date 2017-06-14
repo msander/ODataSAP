@@ -30,7 +30,7 @@ class CollectionsTableViewController: UITableViewController , Notifier{
         
         let indexPath = IndexPath(row: 0, section: 0)
         tableView.selectRow(at: indexPath, animated: true, scrollPosition: .bottom)
-        performSegue(withIdentifier: "ShowDetail", sender: self)
+        //performSegue(withIdentifier: "ShowDetail", sender: self)
 
     }
 

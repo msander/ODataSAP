@@ -10,6 +10,8 @@
 		128605041E55E15F00C698B5 /* SAPCommon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 128605031E55E15F00C698B5 /* SAPCommon.framework */; };
 		128605051E55E16600C698B5 /* SAPCommon.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 128605031E55E15F00C698B5 /* SAPCommon.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		384873ECF319108DB8146C1D /* PurchaseOrderItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F42BC8AB9558460D33C6426 /* PurchaseOrderItem.swift */; };
+		39E7C9371EF1AD27004E3CB6 /* BasicAuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39E7C9361EF1AD27004E3CB6 /* BasicAuthViewController.swift */; };
+		39E7C9391EF1B811004E3CB6 /* ProductDA.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39E7C9381EF1B811004E3CB6 /* ProductDA.swift */; };
 		3D0A5ADCC4A88784E55DAB9B /* Customer.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFDA0218189E2F14064F309A /* Customer.swift */; };
 		3D4EC86B45A53F94F1CB0D27 /* Supplier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F2594D5EB8DBB44FC99E50D /* Supplier.swift */; };
 		42B80F367FE774B6AFFB4F50 /* ESPMContainerMetadata.swift in Sources */ = {isa = PBXBuildFile; fileRef = E196A3B7E41ED53E4F791C4B /* ESPMContainerMetadata.swift */; };
@@ -88,6 +90,8 @@
 		1BE3C2C120CC8C9569F04DD9 /* SalesOrderHeader.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SalesOrderHeader.swift; path = "Proxy Classes/com.pmico.ODataSampleApp/public/SalesOrderHeader.swift"; sourceTree = "<group>"; };
 		2A4333A7634E0C4E61F74515 /* ESPMContainer.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ESPMContainer.swift; path = "Proxy Classes/com.pmico.ODataSampleApp/public/ESPMContainer.swift"; sourceTree = "<group>"; };
 		2BFFC8DF229F7C43E66FF032 /* ProductText.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ProductText.swift; path = "Proxy Classes/com.pmico.ODataSampleApp/public/ProductText.swift"; sourceTree = "<group>"; };
+		39E7C9361EF1AD27004E3CB6 /* BasicAuthViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BasicAuthViewController.swift; sourceTree = "<group>"; };
+		39E7C9381EF1B811004E3CB6 /* ProductDA.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductDA.swift; sourceTree = "<group>"; };
 		46437460A13ABAFA7198C2BF /* Product.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Product.swift; path = "Proxy Classes/com.pmico.ODataSampleApp/public/Product.swift"; sourceTree = "<group>"; };
 		4CD368601EE94B04EF87F5B4 /* SalesOrderItem.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SalesOrderItem.swift; path = "Proxy Classes/com.pmico.ODataSampleApp/public/SalesOrderItem.swift"; sourceTree = "<group>"; };
 		4F42BC8AB9558460D33C6426 /* PurchaseOrderItem.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PurchaseOrderItem.swift; path = "Proxy Classes/com.pmico.ODataSampleApp/public/PurchaseOrderItem.swift"; sourceTree = "<group>"; };
@@ -223,6 +227,7 @@
 				7628D9CE1EEA8426008045D8 /* CollectionsTableViewController.swift */,
 				7628D9D41EEAA313008045D8 /* MasterTableViewController.swift */,
 				768F18671EEAB7AB005E0D79 /* DetailTableViewController.swift */,
+				39E7C9361EF1AD27004E3CB6 /* BasicAuthViewController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -232,6 +237,7 @@
 			children = (
 				7628D9E21EEAABDA008045D8 /* SalesOrderHeaderDA.swift */,
 				76C111D71EEE6CD3009CA5B9 /* CustomerDA.swift */,
+				39E7C9381EF1B811004E3CB6 /* ProductDA.swift */,
 			);
 			name = DataAccess;
 			sourceTree = "<group>";
@@ -422,10 +428,12 @@
 				42B80F367FE774B6AFFB4F50 /* ESPMContainerMetadata.swift in Sources */,
 				E1E106855607C701EC975445 /* Product.swift in Sources */,
 				7628D9E31EEAABDA008045D8 /* SalesOrderHeaderDA.swift in Sources */,
+				39E7C9391EF1B811004E3CB6 /* ProductDA.swift in Sources */,
 				D01B28799F03569D92B78A6C /* ProductCategory.swift in Sources */,
 				7628D9D11EEA90C0008045D8 /* Constants.swift in Sources */,
 				7628D9DD1EEAA779008045D8 /* Notifier.swift in Sources */,
 				B925E294DD052432A4D323F0 /* ProductText.swift in Sources */,
+				39E7C9371EF1AD27004E3CB6 /* BasicAuthViewController.swift in Sources */,
 				760F330E1EEF0620003162C3 /* DetailTableDelegate.swift in Sources */,
 				760F330A1EEF04FC003162C3 /* CustomerDetailView.swift in Sources */,
 				45FBED7945346C3408FD878B /* PurchaseOrderHeader.swift in Sources */,
