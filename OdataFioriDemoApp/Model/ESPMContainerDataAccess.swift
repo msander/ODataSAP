@@ -143,6 +143,24 @@ class ESPMContainerDataAccess {
         }
     }
     
+    /// downloads all deltas from the server to update the local store
+    ///
+    /// - Returns: returns the status
+    func downloadOfflineStore(completionHandler: @escaping (String) -> Void) {
+        if !isOfflineStoreOpened {
+            completionHandler("Offline Store still closed")
+            return
+        }
+        /// the download function update the client’s offline store from the backend.
+        self.offlineService.download { error in
+            if let error = error {
+                completionHandler("Offline Store download failed \(error.localizedDescription)")
+                return
+            }
+            completionHandler("Offline Store is downloaded")
+        }
+    }
+    
     /*
     // -------DataRequesterForEntity: SalesOrderHeaders -------
     func loadSalesOrderHeaders(completionHandler: @escaping([SalesOrderHeader]?, Error?) -> Void) {

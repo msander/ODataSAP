@@ -51,7 +51,7 @@ class CollectionsTableViewController: UITableViewController , Notifier{
                 return
             }
             self.displayAlert(
-                title: "Loading data failed!",
+                title: "Message",
                 message: error,
                 buttonText:"OK")
         }

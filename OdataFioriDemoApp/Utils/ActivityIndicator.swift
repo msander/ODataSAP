@@ -29,6 +29,9 @@ extension ActivityIndicator where Self: UIViewController {
     
     func hideActivityIndicator(_ activityIndicatorView: FUIProcessingIndicatorView) {
         activityIndicatorView.stopAnimating(easeOut: true)
+        self.dismissIndicator(activityIndicatorView)
+    }
+    func dismissIndicator(_ activityIndicatorView: FUIProcessingIndicatorView) {
         activityIndicatorView.dismiss(animated: true)
     }
     

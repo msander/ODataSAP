@@ -13,18 +13,18 @@ import SAPOData
 enum CollectionType: String {
     case customers = "Customers"
     case salesOrderHeaders = "SalesOrderHeaders"
-    case productTexts = "ProductTexts"
-    case suppliers = "Suppliers"
-    case purchaseOrderItems = "PurchaseOrderItems"
-    case stock = "Stock"
-    case productCategories = "ProductCategories"
-    case salesOrderItems = "SalesOrderItems"
-    case purchaseOrderHeaders = "PurchaseOrderHeaders"
     case products = "Products"
+//    case productTexts = "ProductTexts"
+//    case suppliers = "Suppliers"
+//    case purchaseOrderItems = "PurchaseOrderItems"
+//    case stock = "Stock"
+//    case productCategories = "ProductCategories"
+//    case salesOrderItems = "SalesOrderItems"
+//    case purchaseOrderHeaders = "PurchaseOrderHeaders"
     case none = ""
     
     static let allValues: [CollectionType] = [
-        customers, salesOrderHeaders, productTexts, suppliers, purchaseOrderItems, stock, productCategories, salesOrderItems, purchaseOrderHeaders, products]
+        customers, salesOrderHeaders, products]//, productTexts, suppliers, purchaseOrderItems, stock, productCategories, salesOrderItems, purchaseOrderHeaders]
 }
 
 struct Constants {

@@ -52,6 +52,7 @@ class MasterTableViewController: UITableViewController , Notifier, MFMailCompose
         searchController!.searchResultsUpdater = self
         searchController!.dimsBackgroundDuringPresentation = false
         searchController!.hidesNavigationBarDuringPresentation = false
+        searchController!.view.autoresizingMask = [.flexibleBottomMargin, .flexibleHeight, .flexibleLeftMargin, .flexibleRightMargin, .flexibleTopMargin, .flexibleWidth]
         searchController!.searchBar.placeholderText = "Search " + self.collectionType.rawValue
         self.tableView.tableHeaderView = searchController?.searchBar
     }
@@ -62,17 +63,20 @@ class MasterTableViewController: UITableViewController , Notifier, MFMailCompose
     }
 
     func getDetailCollectionData()  {
-        self.showActivityIndicator(self.activityIndicator)
+        
         switch collectionType {
         case .salesOrderHeaders:
+            self.showActivityIndicator(self.activityIndicator)
             self.tableView.register(FUIObjectTableViewCell.self, forCellReuseIdentifier: "FUICell")
             self.getSalesOrderData()
         case .customers:
+            self.showActivityIndicator(self.activityIndicator)
             self.tableView.register(FUIContactCell.self, forCellReuseIdentifier: "FUICell")
             self.getCustomerData()
 
         default:
-        self.displayAlert(title: "Warning", message: "Something goes wrong!!", buttonText: "OK")
+            self.dismissIndicator(self.activityIndicator)
+            self.displayAlert(title: "Warning", message: "Something goes wrong!!", buttonText: "OK")
         }
     }
     
@@ -171,9 +175,6 @@ class MasterTableViewController: UITableViewController , Notifier, MFMailCompose
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
-        tableView.estimatedRowHeight = 80
-        tableView.rowHeight = UITableViewAutomaticDimension
         
         switch collectionType {
             case .salesOrderHeaders:
