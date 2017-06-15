@@ -268,7 +268,6 @@ class MasterTableViewController: UITableViewController , Notifier, MFMailCompose
             }
         }
         if segue.identifier == "addEntity" {
-//            var max = self.getCustomerID()
             let controller = (segue.destination as! UINavigationController).viewControllers[0] as! DetailTableViewController
             controller.title = "Add Entity"
             let doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: controller, action: #selector(controller.createSelectedEntity))

@@ -92,6 +92,7 @@
 		2A4333A7634E0C4E61F74515 /* ESPMContainer.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ESPMContainer.swift; path = "Proxy Classes/com.pmico.ODataSampleApp/public/ESPMContainer.swift"; sourceTree = "<group>"; };
 		2BFFC8DF229F7C43E66FF032 /* ProductText.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ProductText.swift; path = "Proxy Classes/com.pmico.ODataSampleApp/public/ProductText.swift"; sourceTree = "<group>"; };
 		3921C0891EF263D10033FA59 /* MasterDetailCustomerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MasterDetailCustomerDelegate.swift; sourceTree = "<group>"; };
+		3921C08B1EF297760033FA59 /* OdataFioriDemoApp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = OdataFioriDemoApp.entitlements; sourceTree = "<group>"; };
 		39E7C9361EF1AD27004E3CB6 /* BasicAuthViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BasicAuthViewController.swift; sourceTree = "<group>"; };
 		39E7C9381EF1B811004E3CB6 /* ProductDA.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductDA.swift; sourceTree = "<group>"; };
 		46437460A13ABAFA7198C2BF /* Product.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Product.swift; path = "Proxy Classes/com.pmico.ODataSampleApp/public/Product.swift"; sourceTree = "<group>"; };
@@ -186,6 +187,7 @@
 		755EE2491DD4760600F41DC4 /* OdataFioriDemoApp */ = {
 			isa = PBXGroup;
 			children = (
+				3921C08B1EF297760033FA59 /* OdataFioriDemoApp.entitlements */,
 				3921C0881EF263AE0033FA59 /* Protocols */,
 				76429FBF1EF1100E008F5161 /* Model */,
 				76429FBE1EF10FEE008F5161 /* DataAccess */,
@@ -367,7 +369,12 @@
 					755EE2461DD4760600F41DC4 = {
 						CreatedOnToolsVersion = 8.0;
 						DevelopmentTeam = 9DDPTP86JE;
-						ProvisioningStyle = Automatic;
+						ProvisioningStyle = Manual;
+						SystemCapabilities = {
+							com.apple.Push = {
+								enabled = 1;
+							};
+						};
 					};
 					755EE25A1DD4760700F41DC4 = {
 						CreatedOnToolsVersion = 8.0;
@@ -613,6 +620,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = OdataFioriDemoApp/OdataFioriDemoApp.entitlements;
 				DEVELOPMENT_TEAM = 9DDPTP86JE;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -621,8 +629,10 @@
 				INFOPLIST_FILE = OdataFioriDemoApp/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.pmico.OdataFioriDemoApp;
+				PRODUCT_BUNDLE_IDENTIFIER = com.pmico.ODataSampleApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "8be372bd-8760-42ef-b4a9-d9938f1c5b4d";
+				PROVISIONING_PROFILE_SPECIFIER = ODataSampleApp;
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
@@ -631,6 +641,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = OdataFioriDemoApp/OdataFioriDemoApp.entitlements;
 				DEVELOPMENT_TEAM = 9DDPTP86JE;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -639,8 +650,10 @@
 				INFOPLIST_FILE = OdataFioriDemoApp/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.pmico.OdataFioriDemoApp;
+				PRODUCT_BUNDLE_IDENTIFIER = com.pmico.ODataSampleApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "8be372bd-8760-42ef-b4a9-d9938f1c5b4d";
+				PROVISIONING_PROFILE_SPECIFIER = ODataSampleApp;
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;

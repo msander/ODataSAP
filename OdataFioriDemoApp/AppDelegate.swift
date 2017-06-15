@@ -9,9 +9,11 @@ import UIKit
 import SAPFiori
 import SAPFoundation
 import SAPCommon
+import UserNotifications
+
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate,UISplitViewControllerDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate,UISplitViewControllerDelegate,UNUserNotificationCenterDelegate {
 
     var window: UIWindow?
 
@@ -23,7 +25,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate,UISplitViewControllerDeleg
     }
     
     var isLoginSuccessful = false
-    
+    private let logger: Logger = Logger.shared(named: "AppDelegateLogger")
+    private var deviceToken: Data?
+    private var remoteNotificationClient: SAPcpmsRemoteNotificationClient!
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
@@ -50,10 +54,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate,UISplitViewControllerDeleg
         }
         
         // Override point for customization after application launch.
-//        let splitViewController = self.window!.rootViewController as! UISplitViewController
-//        let navigationController = splitViewController.viewControllers[splitViewController.viewControllers.count - 1] as! UINavigationController
-//        navigationController.topViewController!.navigationItem.leftBarButtonItem = splitViewController.displayModeButtonItem
-//        splitViewController.delegate = self
+        let splitViewController = self.window!.rootViewController as! UISplitViewController
+        let navigationController = splitViewController.viewControllers[splitViewController.viewControllers.count - 1] as! UINavigationController
+        navigationController.topViewController!.navigationItem.leftBarButtonItem = splitViewController.displayModeButtonItem
+        splitViewController.delegate = self
         
 //        let urlSession = SAPURLSession(configuration: URLSessionConfiguration.default)
 //        urlSession.register(SAPcpmsObserver(applicationID: Constants.appId, deviceID: UIDevice.current.identifierForVendor!.uuidString))
@@ -62,6 +66,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate,UISplitViewControllerDeleg
         return true
     }
 
+    
+    // MARK: - Remote Notification handling
+    
+    func application(_ application: UIApplication, willFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]? = nil) -> Bool {
+        UIApplication.shared.registerForRemoteNotifications()
+        let center = UNUserNotificationCenter.current()
+        center.requestAuthorization(options: [.alert, .badge, .sound]) { granted, error in
+            // Enable or disable features based on authorization.
+        }
+        center.delegate = self
+        return true
+    }
+
+    
     func applicationWillResignActive(_ application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
         // Use this method to pause ongoing tasks, disable timers, and invalidate graphics rendering callbacks. Games should use this method to pause the game.
@@ -97,6 +115,56 @@ class AppDelegate: UIResponder, UIApplicationDelegate,UISplitViewControllerDeleg
 //        return false
         
         return true;
+    }
+    
+    
+    func registerForRemoteNotification() -> Void {
+        guard let deviceToken = self.deviceToken else {
+            // Device token has not been acquired
+            return
+        }
+        
+        self.remoteNotificationClient = SAPcpmsRemoteNotificationClient(sapURLSession: self.urlSession!, settingsParameters: Constants.configurationParameters)
+        self.remoteNotificationClient.registerDeviceToken(deviceToken, completionHandler: { (error: Error?) -> Void in
+            if error != nil {
+                self.logger.error("Register DeviceToken failed")
+            } else {
+                self.logger.info("Register DeviceToken succeeded")
+            }
+        })
+    }
+    
+    func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
+    
+        // Convert token to string
+        let deviceTokenString = deviceToken.reduce("", {$0 + String(format: "%02X", $1)})
+        
+        // Print it to console
+        print("APNs device token: \(deviceTokenString)")
+        
+    
+        self.deviceToken = deviceToken
+    
+    
+    }
+    
+    func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
+        self.logger.error("Failed to register for Remote Notification")
+    }
+    
+    // Called to let your app know which action was selected by the user for a given notification.
+    func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping() -> Void) {
+        self.logger.info("App opened via user selecting notification: \(response.notification.request.content.body)")
+        // Here is where you want to take action to handle the notification, maybe navigate the user to a given screen.
+        completionHandler()
+    }
+    
+    // Called when a notification is delivered to a foreground app.
+    func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping(UNNotificationPresentationOptions) -> Void) {
+        self.logger.info("Remote Notification arrived while app was in forground: \(notification.request.content.body)")
+        // Currently we are presenting the notification alert as the application were in the backround.
+        // If you have handled the notification and do not want to display an alert, call the completionHandle with empty options: completionHandler([])
+        completionHandler([.alert, .sound])
     }
 
 }

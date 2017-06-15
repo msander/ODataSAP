@@ -79,7 +79,7 @@ class BasicAuthViewController: UIViewController, SAPURLSessionDelegate, UITextFi
                 self.logger.info("Logged in successfully.")
                 
                 // Subscribe for remote notification
-                //self.appDelegate.registerForRemoteNotification()
+                self.appDelegate.registerForRemoteNotification()
                 
                 DispatchQueue.main.async {
                     // Update the UI
