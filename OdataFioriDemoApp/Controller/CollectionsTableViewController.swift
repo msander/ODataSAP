@@ -108,7 +108,14 @@ class CollectionsTableViewController: UITableViewController , Notifier{
         }else{
             cell.keyName = self.collections[indexPath.row]
         }
-        cell.valueTextField.isHidden = true
+        cell.valueTextField.isHidden = false
+        cell.valueTextField.backgroundColor =  UIColor.blue
+        cell.valueTextField.layer.cornerRadius = 10
+        cell.valueTextField.text = "20"
+        cell.valueTextField.textAlignment = .center
+        cell.valueTextField.textColor = UIColor.white
+        cell.accessoryType = UITableViewCellAccessoryType.disclosureIndicator
+        
         return cell
     }
     
