@@ -14,7 +14,7 @@ import SAPFiori
 import SAPCommon
 import SAPOData
 
-class MasterTableViewController: UITableViewController , Notifier, MFMailComposeViewControllerDelegate, ActivityIndicator {
+class MasterTableViewController: UITableViewController , Notifier, MFMailComposeViewControllerDelegate, ActivityIndicator,MasterDetailCustomerDelegate {
 
     private let appDelegate = UIApplication.shared.delegate as! AppDelegate
 
@@ -121,7 +121,9 @@ class MasterTableViewController: UITableViewController , Notifier, MFMailCompose
             self.tableView.register(FUIObjectTableViewCell.self, forCellReuseIdentifier: "FUICell")
             self.getSalesOrderData()
         case .customers:
-            self.showActivityIndicator(self.activityIndicator)
+            DispatchQueue.main.async {
+                self.showActivityIndicator(self.activityIndicator)
+            }
             self.tableView.register(FUIContactCell.self, forCellReuseIdentifier: "FUICell")
             self.getCustomerData()
             
@@ -280,6 +282,15 @@ class MasterTableViewController: UITableViewController , Notifier, MFMailCompose
     }
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         performSegue(withIdentifier: "ShowDetail", sender: tableView)
+    }
+    
+    //MARK: - MasterDetailCustomerDelegate
+    func showDetail(type: CollectionType) {
+        print(type)
+        collectionType = type
+        self.showActivityIndicator(self.activityIndicator)
+        self.navigationItem.title = collectionType.rawValue
+        getDetailCollectionData()
     }
 
 }

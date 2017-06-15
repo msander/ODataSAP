@@ -84,7 +84,9 @@ class BasicAuthViewController: UIViewController, SAPURLSessionDelegate, UITextFi
                 DispatchQueue.main.async {
                     // Update the UI
                     //self.hideActivityIndicator(self.activityIndicator)
+                    self.appDelegate.isLoginSuccessful = true
                     self.dismiss(animated: true, completion: nil)
+                    //self.performSegue(withIdentifier: "showSplit", sender: nil)
                 }
             } else {
                 

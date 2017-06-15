@@ -16,6 +16,7 @@ class CollectionsTableViewController: UITableViewController , Notifier{
     var searchController: FUISearchController?
     private let appDelegate = UIApplication.shared.delegate as! AppDelegate
     private var dataAccess : ESPMContainerDataAccess!
+    weak var delegate: MasterDetailCustomerDelegate?
     
     @IBOutlet weak var syncButton: UIBarButtonItem!
     override func viewDidLoad() {
@@ -34,10 +35,17 @@ class CollectionsTableViewController: UITableViewController , Notifier{
 
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        if appDelegate.isLoginSuccessful {
+            self.delegate?.showDetail(type: CollectionType(rawValue: collections[0])!)
+        }
+    }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
+    
+    
     
     @IBAction func uploadData(_ sender: UIBarButtonItem) {
         self.dataAccess.uploadOfflineStore{ (error) in

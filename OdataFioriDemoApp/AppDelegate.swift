@@ -22,10 +22,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate,UISplitViewControllerDeleg
         }
     }
     
+    var isLoginSuccessful = false
+    
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
         // Override point for customization after application launch.
         UINavigationBar.applyFioriStyle()
+        
+        let splitVC = self.window!.rootViewController as! UISplitViewController
+        let leftNavController = splitVC.viewControllers.first as! UINavigationController
+        let masterViewController = leftNavController.topViewController as! CollectionsTableViewController
+        let rightNavController = splitVC.viewControllers[1] as! UINavigationController
+        let detailViewController = rightNavController.topViewController as! MasterTableViewController
+        masterViewController.delegate = detailViewController
         
         
         // Show the actual authentication' view controller
@@ -40,10 +50,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate,UISplitViewControllerDeleg
         }
         
         // Override point for customization after application launch.
-        let splitViewController = self.window!.rootViewController as! UISplitViewController
-        let navigationController = splitViewController.viewControllers[splitViewController.viewControllers.count - 1] as! UINavigationController
-        navigationController.topViewController!.navigationItem.leftBarButtonItem = splitViewController.displayModeButtonItem
-        splitViewController.delegate = self
+//        let splitViewController = self.window!.rootViewController as! UISplitViewController
+//        let navigationController = splitViewController.viewControllers[splitViewController.viewControllers.count - 1] as! UINavigationController
+//        navigationController.topViewController!.navigationItem.leftBarButtonItem = splitViewController.displayModeButtonItem
+//        splitViewController.delegate = self
         
 //        let urlSession = SAPURLSession(configuration: URLSessionConfiguration.default)
 //        urlSession.register(SAPcpmsObserver(applicationID: Constants.appId, deviceID: UIDevice.current.identifierForVendor!.uuidString))
