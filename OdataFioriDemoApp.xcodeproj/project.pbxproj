@@ -10,6 +10,7 @@
 		128605041E55E15F00C698B5 /* SAPCommon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 128605031E55E15F00C698B5 /* SAPCommon.framework */; };
 		128605051E55E16600C698B5 /* SAPCommon.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 128605031E55E15F00C698B5 /* SAPCommon.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		384873ECF319108DB8146C1D /* PurchaseOrderItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F42BC8AB9558460D33C6426 /* PurchaseOrderItem.swift */; };
+		3921C08A1EF263D10033FA59 /* MasterDetailCustomerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3921C0891EF263D10033FA59 /* MasterDetailCustomerDelegate.swift */; };
 		39E7C9371EF1AD27004E3CB6 /* BasicAuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39E7C9361EF1AD27004E3CB6 /* BasicAuthViewController.swift */; };
 		39E7C9391EF1B811004E3CB6 /* ProductDA.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39E7C9381EF1B811004E3CB6 /* ProductDA.swift */; };
 		3D0A5ADCC4A88784E55DAB9B /* Customer.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFDA0218189E2F14064F309A /* Customer.swift */; };
@@ -91,6 +92,7 @@
 		1BE3C2C120CC8C9569F04DD9 /* SalesOrderHeader.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SalesOrderHeader.swift; path = "Proxy Classes/com.pmico.ODataSampleApp/public/SalesOrderHeader.swift"; sourceTree = "<group>"; };
 		2A4333A7634E0C4E61F74515 /* ESPMContainer.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ESPMContainer.swift; path = "Proxy Classes/com.pmico.ODataSampleApp/public/ESPMContainer.swift"; sourceTree = "<group>"; };
 		2BFFC8DF229F7C43E66FF032 /* ProductText.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ProductText.swift; path = "Proxy Classes/com.pmico.ODataSampleApp/public/ProductText.swift"; sourceTree = "<group>"; };
+		3921C0891EF263D10033FA59 /* MasterDetailCustomerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MasterDetailCustomerDelegate.swift; sourceTree = "<group>"; };
 		39E7C9361EF1AD27004E3CB6 /* BasicAuthViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BasicAuthViewController.swift; sourceTree = "<group>"; };
 		39E7C9381EF1B811004E3CB6 /* ProductDA.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductDA.swift; sourceTree = "<group>"; };
 		46437460A13ABAFA7198C2BF /* Product.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Product.swift; path = "Proxy Classes/com.pmico.ODataSampleApp/public/Product.swift"; sourceTree = "<group>"; };
@@ -156,6 +158,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3921C0881EF263AE0033FA59 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				3921C0891EF263D10033FA59 /* MasterDetailCustomerDelegate.swift */,
+			);
+			name = Protocols;
+			sourceTree = "<group>";
+		};
 		755EE23E1DD4760600F41DC4 = {
 			isa = PBXGroup;
 			children = (
@@ -178,6 +188,7 @@
 		755EE2491DD4760600F41DC4 /* OdataFioriDemoApp */ = {
 			isa = PBXGroup;
 			children = (
+				3921C0881EF263AE0033FA59 /* Protocols */,
 				76429FBF1EF1100E008F5161 /* Model */,
 				76429FBE1EF10FEE008F5161 /* DataAccess */,
 				76429FBD1EF10FDA008F5161 /* Controller */,
@@ -442,6 +453,7 @@
 				760F330A1EEF04FC003162C3 /* CustomerDetailView.swift in Sources */,
 				45FBED7945346C3408FD878B /* PurchaseOrderHeader.swift in Sources */,
 				7628D9CF1EEA8426008045D8 /* CollectionsTableViewController.swift in Sources */,
+				3921C08A1EF263D10033FA59 /* MasterDetailCustomerDelegate.swift in Sources */,
 				384873ECF319108DB8146C1D /* PurchaseOrderItem.swift in Sources */,
 				7C1AE9B18905895CE6A0E5F4 /* SalesOrderHeader.swift in Sources */,
 				C35B5E156FDF1B4C3E87BC23 /* SalesOrderItem.swift in Sources */,
