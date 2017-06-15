@@ -41,6 +41,12 @@ class DetailTableViewController: UITableViewController , Notifier {
             }
             let currentEntity = self.selectedEntity as? Customer
             cellView = CustomerDetailView(dataAccess: self.dataAccess , selectedEntity : currentEntity!)
+        case .salesOrderHeaders:
+            if(self.selectedEntity == nil){
+                self.selectedEntity = Customer()
+            }
+            let currentEntity = self.selectedEntity as? SalesOrderHeader
+            cellView = SalesOrderHeaderView(dataAccess: self.dataAccess , selectedEntity : currentEntity!)
         default:
             break
 
@@ -54,7 +60,14 @@ class DetailTableViewController: UITableViewController , Notifier {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return (cellView as! CustomerDetailView).getEntityCount()
+        switch self.collectionType {
+        case .customers:
+            return (cellView as! CustomerDetailView).getEntityCount()
+        case .salesOrderHeaders:
+            return (cellView as! SalesOrderHeaderView).getEntityCount()
+        default:
+            return 0
+        }
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -62,6 +75,8 @@ class DetailTableViewController: UITableViewController , Notifier {
         switch self.collectionType {
         case .customers:
             (cellView as! CustomerDetailView).prepareCellForCustomerEntity(tableview: tableView, indexPath: indexPath,cell: cell)
+        case .salesOrderHeaders:
+            (cellView as! SalesOrderHeaderView).prepareCellForSalesOrderHeaderEntity(tableview: tableView, indexPath: indexPath,cell: cell)
         default:
             break
         }

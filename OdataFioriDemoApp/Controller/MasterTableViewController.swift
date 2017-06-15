@@ -14,7 +14,7 @@ import SAPFiori
 import SAPCommon
 import SAPOData
 
-class MasterTableViewController: UITableViewController , Notifier, MFMailComposeViewControllerDelegate, ActivityIndicator {
+class MasterTableViewController: UITableViewController , Notifier, MFMailComposeViewControllerDelegate, ActivityIndicator, UISearchBarDelegate {
 
     private let appDelegate = UIApplication.shared.delegate as! AppDelegate
 
@@ -23,16 +23,20 @@ class MasterTableViewController: UITableViewController , Notifier, MFMailCompose
             
         }
     }
+    @IBOutlet weak var searchBar: UISearchBar!
+    
     private var activityIndicator: FUIProcessingIndicatorView!
     var entities: [EntityValue]? = nil;
+    var filteresEntities: [EntityValue]? = nil;
     var customers: Customer?
     var fuiNavigationbar: FUINavigationBar!
-    var searchController: FUISearchController?
+    var searchController = UISearchController()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         title = self.collectionType.rawValue
 //        FUIToastMessage.show(message: "Loading Data...", icon: UIImage(named: "default_person.png")!, inView: self.view, withDuration: 1.0, maxNumberOfLines: 1)
+        
 //        self.addtableHeaderView()
         tableView.estimatedRowHeight = 300
         tableView.rowHeight = UITableViewAutomaticDimension
@@ -40,12 +44,17 @@ class MasterTableViewController: UITableViewController , Notifier, MFMailCompose
         self.activityIndicator.center = self.tableView.center
         self.tableView.addSubview(self.activityIndicator)
         self.getDetailCollectionData()
+        searchBar.delegate=self
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+//    func searchBar(searchBar: UISearchBar, textDidChange searchText: String){
+//        print(searchText)
+//    }
+    
     
     
     //MARK: - Entity fetches
@@ -63,6 +72,7 @@ class MasterTableViewController: UITableViewController , Notifier, MFMailCompose
                 self.hideActivityIndicator(self.activityIndicator)
             }
             self.entities = products
+            self.filteresEntities = products
         })
     }
     
@@ -72,6 +82,7 @@ class MasterTableViewController: UITableViewController , Notifier, MFMailCompose
                 DispatchQueue.main.async {
                     
                     self.entities=entities!;
+                    self.filteresEntities = entities!
                     let salesorderheader = self.entities?[0] as! SalesOrderHeader
                     print("\(salesorderheader.salesOrderID ?? "")")
                     self.tableView.reloadData()
@@ -95,6 +106,7 @@ class MasterTableViewController: UITableViewController , Notifier, MFMailCompose
                 DispatchQueue.main.async {
                     
                     self.entities=entities!;
+                    self.filteresEntities = entities!
                     let customers = self.entities?[0] as! Customer
                     print("\(customers.customerID ?? "")")
                     self.tableView.reloadData()
@@ -137,19 +149,28 @@ class MasterTableViewController: UITableViewController , Notifier, MFMailCompose
         }
     }
 
-    func addtableHeaderView(){
-        searchController = FUISearchController(searchResultsController: nil)
-        searchController!.searchResultsUpdater = self
-        searchController!.dimsBackgroundDuringPresentation = false
-        searchController!.hidesNavigationBarDuringPresentation = false
-        searchController!.view.autoresizingMask = [.flexibleBottomMargin, .flexibleHeight, .flexibleLeftMargin, .flexibleRightMargin, .flexibleTopMargin, .flexibleWidth]
-        searchController!.searchBar.placeholderText = "Search " + self.collectionType.rawValue
-        self.tableView.tableHeaderView = searchController?.searchBar
-    }
     func filterContentForSearchText(searchText: String, scope: String = "All") {
-//        filteredCollections = collections.filter{ collectiondata in collectiondata.lowercased().contains(searchText.lowercased())}
-//        print(filteredCollections)
-//        tableView.reloadData()
+        filteresEntities?.removeAll()
+        let filteredEntities = self.entities.map({$0 as? [Customer]})
+        
+        
+//        filteresEntities = filteredEntities??.filter{ entity  in
+//            (entity.firstName!.contains(searchText.lowercased()))
+//        }
+        filteresEntities = self.entities!.filter{ entity  in
+            (entity.entityID?.contains(searchText.lowercased()))!
+        }
+    
+        print(filteresEntities ?? "")
+        self.tableView.reloadData()
+    }
+//    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
+//        print("searchText")
+//    }
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        print(searchText)
+        filterContentForSearchText(searchText: searchText)
     }
 
     func sendEmail() {
@@ -192,11 +213,11 @@ class MasterTableViewController: UITableViewController , Notifier, MFMailCompose
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        if(self.entities == nil){
+        if(self.filteresEntities == nil){
             return 0
         }
         else{
-            return self.entities!.count
+            return self.filteresEntities!.count
         }
     }
 
@@ -207,13 +228,15 @@ class MasterTableViewController: UITableViewController , Notifier, MFMailCompose
             case .salesOrderHeaders:
                 let cell = tableView.dequeueReusableCell(withIdentifier: "FUICell",for: indexPath as IndexPath)as! FUIObjectTableViewCell
                 cell.accessoryType = .detailDisclosureButton
-                let salesorderheader = self.entities?[indexPath.row] as! SalesOrderHeader
+//                let salesorderheader = self.entities?[indexPath.row] as! SalesOrderHeader
+                let salesorderheader = self.filteresEntities?[indexPath.row] as! SalesOrderHeader
                 cell.headlineText = "\(salesorderheader.salesOrderID ?? "")"
                 cell.footnoteText = "\(String(describing: salesorderheader.createdAt))"
                 return cell
             case .customers:
                 let cell = tableView.dequeueReusableCell(withIdentifier: "FUICell") as! FUIContactCell
-                customers = self.entities?[indexPath.row] as? Customer
+//                customers = self.entities?[indexPath.row] as? Customer
+                customers = self.filteresEntities?[indexPath.row] as? Customer
                 let customerName = (customers?.firstName!)! + " " + (customers?.lastName!)!
                 let address = "\(customers?.street ?? "")" + ", " + "\(customers?.city ?? "")" + " - " + "\(customers?.postalCode ?? "")"
                 
@@ -242,7 +265,8 @@ class MasterTableViewController: UITableViewController , Notifier, MFMailCompose
             case .products:
                 
                 let cell = (tableView.dequeueReusableCell(withIdentifier: "FUIObjectCell", for: indexPath) as? FUIObjectTableViewCell)!
-                let product = entities?[indexPath.row] as? Product
+//                let product = entities?[indexPath.row] as? Product
+                let product = filteresEntities?[indexPath.row] as? Product
                 cell.headlineText = "\(product?.category! ?? "")"
                 cell.subheadlineText = product?.categoryName ?? ""
                 cell.descriptionText = product?.longDescription ?? ""
@@ -260,7 +284,8 @@ class MasterTableViewController: UITableViewController , Notifier, MFMailCompose
         if segue.identifier == "ShowDetail" {
             if let indexPath = tableView.indexPathForSelectedRow {
                 let controller = segue.destination as! DetailTableViewController//(segue.destination as! UINavigationController).topViewController as! DetailTableViewController
-                controller.selectedEntity = self.entities?[indexPath.row]
+//                controller.selectedEntity = self.entities?[indexPath.row]
+                controller.selectedEntity = self.filteresEntities?[indexPath.row]
                 controller.collectionType = self.collectionType
                 controller.navigationItem.leftItemsSupplementBackButton = true
             }
@@ -284,9 +309,9 @@ class MasterTableViewController: UITableViewController , Notifier, MFMailCompose
 
 }
 
-extension MasterTableViewController: UISearchResultsUpdating {
-    func updateSearchResults(for searchController: UISearchController) {
-        filterContentForSearchText(searchText: searchController.searchBar.text!)
-    }
-}
+//extension MasterTableViewController: UISearchResultsUpdating {
+//    func updateSearchResults(for searchController: UISearchController) {
+//        filterContentForSearchText(searchText: searchController.searchBar.text!)
+//    }
+//}
 

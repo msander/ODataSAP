@@ -37,6 +37,7 @@
 		7628D9D71EEAA5A8008045D8 /* ESPMContainerDataAccess.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7628D9D61EEAA5A8008045D8 /* ESPMContainerDataAccess.swift */; };
 		7628D9DD1EEAA779008045D8 /* Notifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7628D9DC1EEAA779008045D8 /* Notifier.swift */; };
 		7628D9E31EEAABDA008045D8 /* SalesOrderHeaderDA.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7628D9E21EEAABDA008045D8 /* SalesOrderHeaderDA.swift */; };
+		767440441EF264110092A93D /* SalesOrderHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 767440431EF264110092A93D /* SalesOrderHeaderView.swift */; };
 		768F18681EEAB7AB005E0D79 /* DetailTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 768F18671EEAB7AB005E0D79 /* DetailTableViewController.swift */; };
 		76C111D81EEE6CD3009CA5B9 /* CustomerDA.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76C111D71EEE6CD3009CA5B9 /* CustomerDA.swift */; };
 		76C111DA1EEE760B009CA5B9 /* ActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76C111D91EEE760B009CA5B9 /* ActivityIndicator.swift */; };
@@ -115,6 +116,7 @@
 		7628D9D61EEAA5A8008045D8 /* ESPMContainerDataAccess.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ESPMContainerDataAccess.swift; path = Model/ESPMContainerDataAccess.swift; sourceTree = "<group>"; };
 		7628D9DC1EEAA779008045D8 /* Notifier.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Notifier.swift; path = Utils/Notifier.swift; sourceTree = "<group>"; };
 		7628D9E21EEAABDA008045D8 /* SalesOrderHeaderDA.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SalesOrderHeaderDA.swift; path = DataAccess/SalesOrderHeaderDA.swift; sourceTree = "<group>"; };
+		767440431EF264110092A93D /* SalesOrderHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SalesOrderHeaderView.swift; path = Delegates/SalesOrderHeaderView.swift; sourceTree = "<group>"; };
 		768F18671EEAB7AB005E0D79 /* DetailTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DetailTableViewController.swift; path = Controller/DetailTableViewController.swift; sourceTree = "<group>"; };
 		76C111D71EEE6CD3009CA5B9 /* CustomerDA.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CustomerDA.swift; path = DataAccess/CustomerDA.swift; sourceTree = "<group>"; };
 		76C111D91EEE760B009CA5B9 /* ActivityIndicator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ActivityIndicator.swift; path = Utils/ActivityIndicator.swift; sourceTree = "<group>"; };
@@ -207,6 +209,7 @@
 			isa = PBXGroup;
 			children = (
 				760F33091EEF04FC003162C3 /* CustomerDetailView.swift */,
+				767440431EF264110092A93D /* SalesOrderHeaderView.swift */,
 				760F330D1EEF0620003162C3 /* DetailTableDelegate.swift */,
 			);
 			name = Delegates;
@@ -431,6 +434,7 @@
 				39E7C9391EF1B811004E3CB6 /* ProductDA.swift in Sources */,
 				D01B28799F03569D92B78A6C /* ProductCategory.swift in Sources */,
 				7628D9D11EEA90C0008045D8 /* Constants.swift in Sources */,
+				767440441EF264110092A93D /* SalesOrderHeaderView.swift in Sources */,
 				7628D9DD1EEAA779008045D8 /* Notifier.swift in Sources */,
 				B925E294DD052432A4D323F0 /* ProductText.swift in Sources */,
 				39E7C9371EF1AD27004E3CB6 /* BasicAuthViewController.swift in Sources */,
