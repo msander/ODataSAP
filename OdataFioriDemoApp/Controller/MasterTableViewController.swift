@@ -14,7 +14,7 @@ import SAPFiori
 import SAPCommon
 import SAPOData
 
-class MasterTableViewController: UITableViewController , Notifier, MFMailComposeViewControllerDelegate, ActivityIndicator, UISearchBarDelegate {
+class MasterTableViewController: UITableViewController , Notifier, MFMailComposeViewControllerDelegate, ActivityIndicator, UISearchBarDelegate,MasterDetailCustomerDelegate {
 
     private let appDelegate = UIApplication.shared.delegate as! AppDelegate
 
@@ -150,10 +150,15 @@ class MasterTableViewController: UITableViewController , Notifier, MFMailCompose
             self.displayAlert(title: "Warning", message: "Something goes wrong!!", buttonText: "OK")
         }
     }
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        print(searchText)
+        filterContentForSearchText(searchText: searchText)
+    }
 
     func filterContentForSearchText(searchText: String, scope: String = "All") {
         filteresEntities?.removeAll()
-        let filteredEntities = self.entities.map({$0 as? [Customer]})
+//        let filteredEntities = self.entities.map({$0 as? [Customer]})
         
         
 //        filteresEntities = filteredEntities??.filter{ entity  in
@@ -163,16 +168,11 @@ class MasterTableViewController: UITableViewController , Notifier, MFMailCompose
             (entity.entityID?.contains(searchText.lowercased()))!
         }
     
+        if(searchText == ""){
+            filteresEntities = self.entities
+        }
         print(filteresEntities ?? "")
         self.tableView.reloadData()
-    }
-//    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
-//        print("searchText")
-//    }
-    
-    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        print(searchText)
-        filterContentForSearchText(searchText: searchText)
     }
 
     func sendEmail() {
@@ -245,8 +245,8 @@ class MasterTableViewController: UITableViewController , Notifier, MFMailCompose
                 let activities = [FUIActivityItem.phone, FUIActivityItem.email]
                 cell.detailImage = UIImage(named: "icon.jpg")
                 cell.headlineText = customerName
-                cell.subheadlineText = address
-                cell.descriptionText = "\(customers?.country ?? "")"
+                cell.subheadlineText = customers?.customerID//address
+                cell.descriptionText = address + ",\(customers?.country ?? "")"
                 cell.activityControl.addActivities(activities)
                 
                 cell.onActivitySelectedHandler = { activities in
