@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16C67" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="IdN-w0-bo2">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="IdN-w0-bo2">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -267,8 +267,11 @@
                                         </attributedString>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KyS-U5-3l6">
-                                        <rect key="frame" x="38" y="407" width="300" height="30"/>
+                                        <rect key="frame" x="38" y="407" width="300" height="35"/>
                                         <color key="backgroundColor" red="0.1332067343737933" green="0.2111006908160209" blue="0.71004520939086291" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="35" id="SY6-v9-KVh"/>
+                                        </constraints>
                                         <state key="normal" title="Log in">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
@@ -319,7 +322,6 @@
                                 <constraints>
                                     <constraint firstItem="epD-iL-fct" firstAttribute="top" secondItem="yif-zP-MFv" secondAttribute="bottom" constant="8" symbolic="YES" id="0XH-fS-veZ"/>
                                     <constraint firstItem="yif-zP-MFv" firstAttribute="trailing" secondItem="epD-iL-fct" secondAttribute="trailing" id="106-Fo-vgT"/>
-                                    <constraint firstAttribute="bottom" secondItem="KyS-U5-3l6" secondAttribute="bottom" constant="230" id="2TX-3F-1j6"/>
                                     <constraint firstItem="KyS-U5-3l6" firstAttribute="top" secondItem="epD-iL-fct" secondAttribute="bottom" constant="20" id="7BI-e9-QNg"/>
                                     <constraint firstItem="vJJ-vE-d2D" firstAttribute="leading" secondItem="vb2-fx-J0Q" secondAttribute="leading" id="7q3-pF-Qmz"/>
                                     <constraint firstItem="yif-zP-MFv" firstAttribute="centerY" secondItem="1E9-hY-hmI" secondAttribute="centerY" id="AeY-LE-kPz"/>
@@ -334,6 +336,7 @@
                                     <constraint firstAttribute="trailing" secondItem="vb2-fx-J0Q" secondAttribute="trailing" priority="1" id="QEu-aI-zAM"/>
                                     <constraint firstItem="KyS-U5-3l6" firstAttribute="centerX" secondItem="vb2-fx-J0Q" secondAttribute="centerX" id="Ydb-SN-883"/>
                                     <constraint firstItem="epD-iL-fct" firstAttribute="trailing" secondItem="vb2-fx-J0Q" secondAttribute="trailing" id="flI-he-yls"/>
+                                    <constraint firstAttribute="bottom" secondItem="KyS-U5-3l6" secondAttribute="bottom" constant="225" id="g4J-7w-O1X"/>
                                     <constraint firstItem="vJJ-vE-d2D" firstAttribute="centerY" secondItem="yif-zP-MFv" secondAttribute="centerY" constant="0.5" id="j7W-sc-rCj"/>
                                     <constraint firstItem="vJJ-vE-d2D" firstAttribute="leading" secondItem="jJN-CP-fWY" secondAttribute="leading" id="mSa-K5-RNK"/>
                                     <constraint firstItem="jJN-CP-fWY" firstAttribute="centerY" secondItem="epD-iL-fct" secondAttribute="centerY" constant="0.5" id="oVg-Yw-aSa"/>

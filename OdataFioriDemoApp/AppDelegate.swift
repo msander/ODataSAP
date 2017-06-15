@@ -164,7 +164,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate,UISplitViewControllerDeleg
         self.logger.info("Remote Notification arrived while app was in forground: \(notification.request.content.body)")
         // Currently we are presenting the notification alert as the application were in the backround.
         // If you have handled the notification and do not want to display an alert, call the completionHandle with empty options: completionHandler([])
-        completionHandler([.alert, .sound])
+        print("\(notification.request.content.body)")
+        FUIToastMessage.show(message: notification.request.content.body, icon: UIImage(named: "tick")!, inWindow: self.window!, withDuration: 5.0, maxNumberOfLines: 1)
+        //FUIToastMessage.sh
+        completionHandler([.alert, .sound, .badge])
     }
 
 }
