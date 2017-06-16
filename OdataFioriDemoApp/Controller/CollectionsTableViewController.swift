@@ -109,7 +109,7 @@ class CollectionsTableViewController: UITableViewController , Notifier{
             cell.keyName = self.collections[indexPath.row]
         }
         cell.valueTextField.isHidden = false
-        cell.valueTextField.backgroundColor =  UIColor.blue
+        cell.valueTextField.backgroundColor =  UIColor.black
         cell.valueTextField.layer.cornerRadius = 10
         cell.valueTextField.text = "20"
         cell.valueTextField.textAlignment = .center
