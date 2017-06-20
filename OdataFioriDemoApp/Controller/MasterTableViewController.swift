@@ -26,8 +26,11 @@ class MasterTableViewController: UITableViewController , Notifier, MFMailCompose
     @IBOutlet weak var searchBar: UISearchBar!
     
     private var activityIndicator: FUIProcessingIndicatorView!
-    var entities: [EntityValue]? = nil;
-    var filteresEntities: [EntityValue]? = nil;
+    var entities: [EntityValue]? = nil
+    var custEntities = [Customer?]()
+    var salesOrderHeaderEntity = [SalesOrderHeader?]()
+    var productsEntity = [Product?]()
+    var filteresEntities: [EntityValue]? = nil
     var customers: Customer?
     var fuiNavigationbar: FUINavigationBar!
     var searchController = UISearchController()
@@ -73,6 +76,9 @@ class MasterTableViewController: UITableViewController , Notifier, MFMailCompose
             }
             self.entities = products
             self.filteresEntities = products
+            for entity in self.entities! {
+                self.productsEntity.append((entity as? Product)!)
+            }
         })
     }
     
@@ -84,6 +90,9 @@ class MasterTableViewController: UITableViewController , Notifier, MFMailCompose
                     self.entities=entities!;
                     self.filteresEntities = entities!
                     let salesorderheader = self.entities?[0] as! SalesOrderHeader
+                    for entity in self.entities! {
+                        self.salesOrderHeaderEntity.append((entity as? SalesOrderHeader)!)
+                    }
                     print("\(salesorderheader.salesOrderID ?? "")")
                     self.tableView.reloadData()
                     print("Table updated successfully!")
@@ -105,9 +114,12 @@ class MasterTableViewController: UITableViewController , Notifier, MFMailCompose
             guard error != nil else {
                 DispatchQueue.main.async {
                     
-                    self.entities=entities!;
+                    self.entities=entities!
                     self.filteresEntities = entities!
                     let customers = self.entities?[0] as! Customer
+                    for entity in self.entities! {
+                        self.custEntities.append((entity as? Customer)!)
+                    }
                     print("\(customers.customerID ?? "")")
                     self.tableView.reloadData()
                     print("Table updated successfully!")
@@ -158,22 +170,86 @@ class MasterTableViewController: UITableViewController , Notifier, MFMailCompose
 
     func filterContentForSearchText(searchText: String, scope: String = "All") {
         filteresEntities?.removeAll()
-//        let filteredEntities = self.entities.map({$0 as? [Customer]})
         
         
-//        filteresEntities = filteredEntities??.filter{ entity  in
-//            (entity.firstName!.contains(searchText.lowercased()))
-//        }
-        filteresEntities = self.entities!.filter{ entity  in
-            (entity.entityID?.contains(searchText.lowercased()))!
+        switch collectionType {
+        case .customers:
+            filteresEntities = addFiltersForCustomer(searchtext: searchText)
+        case .salesOrderHeaders:
+            filteresEntities = addFiltersForSalesOrderHeader(searchtext: searchText)
+        case .products:
+            filteresEntities = addFiltersForProducts(searchtext: searchText)
+        default:
+            print("Unknown collection type")
         }
-    
+        
         if(searchText == ""){
             filteresEntities = self.entities
         }
         print(filteresEntities ?? "")
         self.tableView.reloadData()
     }
+    
+    fileprivate func addFiltersForCustomer(searchtext: String) -> [EntityValue]{
+        let filteredData = self.custEntities.filter{ entity  in
+            if((entity?.firstName?.lowercased().contains(searchtext.lowercased()))!){
+                return (entity != nil)
+            }else if(entity?.lastName?.lowercased().contains(searchtext.lowercased()))!{
+                return (entity != nil)
+            }
+            else if(entity?.customerID?.lowercased().contains(searchtext.lowercased()))!{
+                return (entity != nil)
+            }
+            else if(entity?.city?.lowercased().contains(searchtext.lowercased()))!{
+                return (entity != nil)
+            }
+            else if(entity?.street?.lowercased().contains(searchtext.lowercased()))!{
+                return (entity != nil)
+            }
+            else if(entity?.country?.lowercased().contains(searchtext.lowercased()))!{
+                return (entity != nil)
+            }
+            else{
+                return false
+            }
+            } as? [EntityValue]
+        
+        return filteredData!
+    }
+    
+    fileprivate func addFiltersForSalesOrderHeader(searchtext: String) -> [EntityValue]{
+        let filteredData = self.salesOrderHeaderEntity.filter{ entity  in
+            if((entity?.customerID?.lowercased().contains(searchtext.lowercased()))!){
+                return (entity != nil)
+            }else if(entity?.salesOrderID?.lowercased().contains(searchtext.lowercased()))!{
+                return (entity != nil)
+            }
+            else{
+                return false
+            }
+            } as? [EntityValue]
+        
+        return filteredData!
+    }
+    
+    fileprivate func addFiltersForProducts(searchtext: String) -> [EntityValue]{
+        let filteredData = self.productsEntity.filter{ entity  in
+            if((entity?.category?.lowercased().contains(searchtext.lowercased()))!){
+                return (entity != nil)
+            }else if(entity?.longDescription?.lowercased().contains(searchtext.lowercased()))!{
+                return (entity != nil)
+            }else if(entity?.categoryName?.lowercased().contains(searchtext.lowercased()))!{
+                return (entity != nil)
+            }
+            else{
+                return false
+            }
+            } as? [EntityValue]
+        
+        return filteredData!
+    }
+    
+    
 
     func sendEmail() {
         if MFMailComposeViewController.canSendMail() {
