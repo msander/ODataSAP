@@ -11,6 +11,7 @@
 		128605051E55E16600C698B5 /* SAPCommon.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 128605031E55E15F00C698B5 /* SAPCommon.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		384873ECF319108DB8146C1D /* PurchaseOrderItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F42BC8AB9558460D33C6426 /* PurchaseOrderItem.swift */; };
 		3921C08A1EF263D10033FA59 /* MasterDetailCustomerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3921C0891EF263D10033FA59 /* MasterDetailCustomerDelegate.swift */; };
+		3943CFBD1F0258540048C73A /* OfflineODataDel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3943CFBC1F0258540048C73A /* OfflineODataDel.swift */; };
 		39E7C9371EF1AD27004E3CB6 /* BasicAuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39E7C9361EF1AD27004E3CB6 /* BasicAuthViewController.swift */; };
 		39E7C9391EF1B811004E3CB6 /* ProductDA.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39E7C9381EF1B811004E3CB6 /* ProductDA.swift */; };
 		3D0A5ADCC4A88784E55DAB9B /* Customer.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFDA0218189E2F14064F309A /* Customer.swift */; };
@@ -94,6 +95,7 @@
 		2BFFC8DF229F7C43E66FF032 /* ProductText.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ProductText.swift; path = "Proxy Classes/com.pmico.ODataSampleApp/public/ProductText.swift"; sourceTree = "<group>"; };
 		3921C0891EF263D10033FA59 /* MasterDetailCustomerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MasterDetailCustomerDelegate.swift; sourceTree = "<group>"; };
 		3921C08B1EF297760033FA59 /* OdataFioriDemoApp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = OdataFioriDemoApp.entitlements; sourceTree = "<group>"; };
+		3943CFBC1F0258540048C73A /* OfflineODataDel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OfflineODataDel.swift; sourceTree = "<group>"; };
 		39E7C9361EF1AD27004E3CB6 /* BasicAuthViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BasicAuthViewController.swift; sourceTree = "<group>"; };
 		39E7C9381EF1B811004E3CB6 /* ProductDA.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductDA.swift; sourceTree = "<group>"; };
 		46437460A13ABAFA7198C2BF /* Product.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Product.swift; path = "Proxy Classes/com.pmico.ODataSampleApp/public/Product.swift"; sourceTree = "<group>"; };
@@ -233,6 +235,7 @@
 			children = (
 				7628D9DC1EEAA779008045D8 /* Notifier.swift */,
 				76C111D91EEE760B009CA5B9 /* ActivityIndicator.swift */,
+				3943CFBC1F0258540048C73A /* OfflineODataDel.swift */,
 			);
 			name = Utils;
 			sourceTree = "<group>";
@@ -447,6 +450,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				755EE24B1DD4760600F41DC4 /* AppDelegate.swift in Sources */,
+				3943CFBD1F0258540048C73A /* OfflineODataDel.swift in Sources */,
 				3D0A5ADCC4A88784E55DAB9B /* Customer.swift in Sources */,
 				4E2FFC73B74825F18637C2F2 /* ESPMContainer.swift in Sources */,
 				42B80F367FE774B6AFFB4F50 /* ESPMContainerMetadata.swift in Sources */,

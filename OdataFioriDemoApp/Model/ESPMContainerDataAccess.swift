@@ -28,7 +28,8 @@ class ESPMContainerDataAccess {
         /// initialise the OfflineODataParameters which
         var offlineParameters = OfflineODataParameters()
         offlineParameters.customHeaders = ["X-SMP-APPID":Constants.appId]
-        let offlineODataProvider = try! OfflineODataProvider(serviceRoot: URL(string: Constants.appUrl.absoluteString)!, parameters: offlineParameters, sapURLSession: urlSession)
+        let delegate: OfflineODataDel = OfflineODataDel()
+        let offlineODataProvider = try! OfflineODataProvider(serviceRoot: URL(string: Constants.appUrl.absoluteString)!, parameters: offlineParameters, sapURLSession: urlSession, delegate: delegate)
         
         /// define the initial set of Data, the AppID and the Offline OData Provider for the store
         try! offlineODataProvider.add(definingQuery: OfflineODataDefiningQuery(
@@ -218,5 +219,22 @@ class ESPMContainerDataAccess {
             }
         }
     }*/
+    
+    //MARK: Offline Data uploads
+    func performUpload() {
+        self.offlineService.upload(completionHandler: { ( _ error: OfflineODataError?) -> Void in
+            self.uploadCompletion(success: error == nil, error: error)
+        })
+    }
+    
+    func uploadCompletion(success: Bool, error: Error?) {
+        if success {
+            print("Upload from offline store to backend successful")
+        }
+        else {
+            print("Upload from offline store failed! error:\(error?.localizedDescription ?? "blank")")
+            // TODO: Implement error handling
+        }
+    }
     
 }
