@@ -12,6 +12,7 @@
 		384873ECF319108DB8146C1D /* PurchaseOrderItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F42BC8AB9558460D33C6426 /* PurchaseOrderItem.swift */; };
 		3921C08A1EF263D10033FA59 /* MasterDetailCustomerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3921C0891EF263D10033FA59 /* MasterDetailCustomerDelegate.swift */; };
 		3943CFBD1F0258540048C73A /* OfflineODataDel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3943CFBC1F0258540048C73A /* OfflineODataDel.swift */; };
+		39E4B79A1F0BA844000EF34A /* Customers.plist in Resources */ = {isa = PBXBuildFile; fileRef = 39E4B7991F0BA844000EF34A /* Customers.plist */; };
 		39E7C9371EF1AD27004E3CB6 /* BasicAuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39E7C9361EF1AD27004E3CB6 /* BasicAuthViewController.swift */; };
 		39E7C9391EF1B811004E3CB6 /* ProductDA.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39E7C9381EF1B811004E3CB6 /* ProductDA.swift */; };
 		3D0A5ADCC4A88784E55DAB9B /* Customer.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFDA0218189E2F14064F309A /* Customer.swift */; };
@@ -96,6 +97,7 @@
 		3921C0891EF263D10033FA59 /* MasterDetailCustomerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MasterDetailCustomerDelegate.swift; sourceTree = "<group>"; };
 		3921C08B1EF297760033FA59 /* OdataFioriDemoApp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = OdataFioriDemoApp.entitlements; sourceTree = "<group>"; };
 		3943CFBC1F0258540048C73A /* OfflineODataDel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OfflineODataDel.swift; sourceTree = "<group>"; };
+		39E4B7991F0BA844000EF34A /* Customers.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Customers.plist; sourceTree = "<group>"; };
 		39E7C9361EF1AD27004E3CB6 /* BasicAuthViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BasicAuthViewController.swift; sourceTree = "<group>"; };
 		39E7C9381EF1B811004E3CB6 /* ProductDA.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductDA.swift; sourceTree = "<group>"; };
 		46437460A13ABAFA7198C2BF /* Product.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Product.swift; path = "Proxy Classes/com.pmico.ODataSampleApp/public/Product.swift"; sourceTree = "<group>"; };
@@ -169,6 +171,14 @@
 			name = Protocols;
 			sourceTree = "<group>";
 		};
+		39E4B7961F0BA6B9000EF34A /* JSONData */ = {
+			isa = PBXGroup;
+			children = (
+				39E4B7991F0BA844000EF34A /* Customers.plist */,
+			);
+			name = JSONData;
+			sourceTree = "<group>";
+		};
 		755EE23E1DD4760600F41DC4 = {
 			isa = PBXGroup;
 			children = (
@@ -191,6 +201,7 @@
 		755EE2491DD4760600F41DC4 /* OdataFioriDemoApp */ = {
 			isa = PBXGroup;
 			children = (
+				39E4B7961F0BA6B9000EF34A /* JSONData */,
 				3921C08B1EF297760033FA59 /* OdataFioriDemoApp.entitlements */,
 				3921C0881EF263AE0033FA59 /* Protocols */,
 				76429FBF1EF1100E008F5161 /* Model */,
@@ -424,6 +435,7 @@
 			files = (
 				755EE2551DD4760700F41DC4 /* LaunchScreen.storyboard in Resources */,
 				755EE2521DD4760700F41DC4 /* Assets.xcassets in Resources */,
+				39E4B79A1F0BA844000EF34A /* Customers.plist in Resources */,
 				755EE2501DD4760700F41DC4 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

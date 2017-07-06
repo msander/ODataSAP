@@ -110,7 +110,32 @@ class MasterTableViewController: UITableViewController , Notifier, MFMailCompose
     }
     
     func getCustomerData(){
-        CustomerDA().requestEntities { (entities,error) in
+//        CustomerDA().requestEntities { (entities,error) in
+//            guard error != nil else {
+//                DispatchQueue.main.async {
+//                    
+//                    self.entities=entities!
+//                    self.filteresEntities = entities!
+//                    let customers = self.entities?[0] as! Customer
+//                    for entity in self.entities! {
+//                        self.custEntities.append((entity as? Customer)!)
+//                    }
+//                    print("\(customers.customerID ?? "")")
+//                    self.tableView.reloadData()
+//                    print("Table updated successfully!")
+//                    self.hideActivityIndicator(self.activityIndicator)
+//                }
+//                return
+//            }
+//            self.hideActivityIndicator(self.activityIndicator)
+//            self.displayAlert(
+//                title: "Loading data failed!",
+//                message: "Error loading data",//"\(error.localizedDescription)",
+//                buttonText:"OK")
+//        }
+        
+        let cusDa = CustomerDA()
+        cusDa.requestEntitiesFromJSON{(entities,error) in
             guard error != nil else {
                 DispatchQueue.main.async {
                     
@@ -132,6 +157,7 @@ class MasterTableViewController: UITableViewController , Notifier, MFMailCompose
                 title: "Loading data failed!",
                 message: "Error loading data",//"\(error.localizedDescription)",
                 buttonText:"OK")
+            
         }
     }
 

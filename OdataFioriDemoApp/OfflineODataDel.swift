@@ -26,7 +26,7 @@ class OfflineODataDel :OfflineODataDelegate {
     
     public func offlineODataProvider( _ provider: OfflineODataProvider, didUpdateUploadProgress progress: OfflineODataProgress ) -> Void
     {
-        print( "downloadProgress: \(progress.bytesSent)  \(progress.bytesReceived)" )
+        print( "uploadProgress: \(progress.bytesSent)  \(progress.bytesReceived)" )
     }
     
     public func offlineODataProvider( _ provider: OfflineODataProvider, requestDidFail request: OfflineODataFailedRequest ) -> Void
